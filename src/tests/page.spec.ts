@@ -1,10 +1,27 @@
 import { test, expect } from "@playwright/test";
+import { auto } from "auto-playwright";
 
 test.describe("Page should", async () => {
-  test("had author name", async ({ page }) => {
+  const options = {
+    // The OpenAI model (https://platform.openai.com/docs/models/overview)
+    debug: true,
+    model: "gpt-3.5-turbo",
+  };
+  test("be able to search using AI", async ({ page }) => {
+    test.setTimeout(120000);
     await page.goto("/");
+    await auto(
+      "Fill the search input with the place holder `Buscar posts...` using the value `test` this action will not return anything",
+      { page, test },
+      options
+    );
 
-    await expect(page).toHaveTitle(/Kevin Hierro/);
+    const postResults = await auto(
+      "We need to wait for the results and then the DOM will display the links, give me the number of them",
+      { page },
+      options
+    );
+    await expect(parseInt(postResults.query)).toBeGreaterThan(1);
   });
 
   test("be able to search", async ({ page }) => {

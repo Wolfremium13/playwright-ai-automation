@@ -41,5 +41,9 @@
             "npm run compile",
             "git add . "
         ]
+    },
+    "dependencies": {
+        "auto-playwright": "^1.14.0",
+        "dotenv": "^16.3.1"
     }
 }
