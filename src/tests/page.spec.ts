@@ -11,13 +11,13 @@ test.describe("Page should", async () => {
     test.setTimeout(120000);
     await page.goto("/");
     await auto(
-      "Fill the search input with the place holder `Buscar posts...` using the value `test` this action will not return anything",
-      { page, test },
+      "Action with no result: Fill the search input with the place holder `Buscar posts...` using the value `test`",
+      { page },
       options
     );
 
     const postResults = await auto(
-      "We need to wait for the results and then the DOM will display the links, give me the number of them",
+      "Query: We need to wait 3 seconds for the results and then the DOM will display the links, give me the number of them",
       { page },
       options
     );
