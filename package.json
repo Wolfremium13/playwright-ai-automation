@@ -1,0 +1,45 @@
+{
+    "name": "playwright-ai-automation",
+    "version": "1.0.0",
+    "description": "LOL",
+    "main": "dist/index.js",
+    "scripts": {
+        "execute": "npm run compile:build && node dist/index.js",
+        "build": "npm run compile:build",
+        "analize": "npm run lint:fix && npm run compile",
+        "compile": "tsc --noEmit",
+        "compile:watch": "npm run compile -- --watch",
+        "compile:build": "tsc -b",
+        "lint": "eslint ./src --ext .ts,.tsx",
+        "lint:watch": "esw --color --watch",
+        "lint:fix": "npm run lint -- --fix",
+        "test": "playwright test",
+        "test:coverage": "playwright show-report",
+        "check-updates": "ncu -u"
+    },
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=9.5.1"
+    },
+    "packageManager": "npm@9.5.1",
+    "author": "kevin-hierro",
+    "license": "ISC",
+    "devDependencies": {
+        "@playwright/test": "^1.40.1",
+        "@types/node": "^18.15.11",
+        "@typescript-eslint/eslint-plugin": "^5.57.0",
+        "@typescript-eslint/parser": "^5.57.0",
+        "eslint": "^8.37.0",
+        "eslint-config-prettier": "^8.8.0",
+        "eslint-plugin-prettier": "^4.2.1",
+        "eslint-watch": "^8.0.0",
+        "typescript": "^5.0.3"
+    },
+    "lint-staged": {
+        "*.+(ts|tsx)": [
+            "npm run lint:fix",
+            "npm run compile",
+            "git add . "
+        ]
+    }
+}
